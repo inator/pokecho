@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 
 import { getGamesData } from "../lib/games";
 
@@ -12,11 +12,11 @@ export async function getStaticProps() {
     };
 }
 
-export default function Test({ allGamesData }) {
+export default function Pokecho({ allGamesData }) {
     const [game, setGame] = useState(allGamesData[0].id);
 
     return (
-        <div>
+        <Fragment>
             <Head>
                 <title>Pokécho</title>
                 <meta name="description" content="Pokémon search engine" />
@@ -36,6 +36,14 @@ export default function Test({ allGamesData }) {
             <input type="text" id="search"></input>
 
             <div>{game}</div>
-        </div>
+
+            <div>
+                {Object.values(allGamesData.find(gameData => gameData.id === game).pokemon).map(pokemon => (
+                    pokemon.map(({ name }) => (
+                        <div>{name}</div> 
+                    ))
+                ))}
+            </div>
+        </Fragment>
     );
 }
