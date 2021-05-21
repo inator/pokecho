@@ -41,7 +41,7 @@ export default function Pokecho({ allGamesData }) {
             <label for="search">Search: </label>
             <input type="text" id="search" onChange={e => setSearch(e.target.value.toLowerCase())}></input>
 
-            <div>{gameID}</div>
+            <div>{gameID /*debugging*/}</div>
 
             <div>
                 {processQuery(game, search)}
